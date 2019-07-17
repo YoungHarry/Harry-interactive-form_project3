@@ -79,14 +79,15 @@ $('.activities').on('change',function(e){
   console.log(lastTotal);
 
 //Grabbing the checkboxes from input
-  const $newOne = $('[type="checkbox"]');
+  let $newOne = $('[type="checkbox"]');
 
 // a for loop for each ofthe activity selected so that you can disable them
   for(let i=0; $newOne.length; i++ ){
-    let $activityinteration = $newOne[i].parentNode;
-     let  activitycorrection = $activityinteration.parentElement.textContent;
-
-     if(activitycorrection.includes(Date)&& $activityinteration.textContent !== clickedActivities ){
+    let $activityinteration = $newOne[i];
+    console.log("It works")
+     let  activitycorrection = $activityinteration;
+     console.log("still works?")
+     if($newOne !== lastTotal ){
        $activityinteration.disabled = true;
      }
 
@@ -95,6 +96,8 @@ $('.activities').on('change',function(e){
 
      }
 };
+
+$("option:contains('Select Payment Method')").hide();
 
 
 
