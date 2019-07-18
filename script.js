@@ -87,7 +87,8 @@ $('.activities').on('change',function(e){
     console.log("It works")
      let  activitycorrection = $activityinteration;
      console.log("still works?")
-     if($newOne !== lastTotal ){
+     if(lastTotal !== clickedActivities){
+     if(clickedActivities.checked ){
        $activityinteration.disabled = true;
      }
 
@@ -95,6 +96,7 @@ $('.activities').on('change',function(e){
         $activityinteration.disabled = false;
 
      }
+   }
 };
 
 $("option:contains('Select Payment Method')").hide();
