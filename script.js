@@ -87,7 +87,7 @@ $('.activities').on('change',function(e){
     console.log("It works")
 
 
-     if($activityinteration && $newOne.textContent !== clickedActivities){
+     if(lastTotal && $newOne.textContent !== clickedActivities){
      if(clickedActivities.checked ){
        $activityinteration.disabled = true;
      }
