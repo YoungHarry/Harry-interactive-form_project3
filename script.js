@@ -1,7 +1,4 @@
 
-
-
-
 //Putting first field into 'focus' state
 
 $("#name").focus();
@@ -62,19 +59,21 @@ $('.activities').on('change',function(e){
   let newTotal =  clicked.slice($newLet + 1, $newLet.length);
 
   newTotal = parseInt(newTotal);
-  if(clickedActivities.clicked = true){
+
+  if(clickedActivities.prop("checked")){
     costOfActivity = costOfActivity + newTotal;
   }
 
-  if(clickedActivities.clicked = false){
+  else{
     costOfActivity = costOfActivity - newTotal;
   }
-
+  //displaying the total
+displayActivity.textContent = anotherDollarSign + costOfActivity;
   //varaibles that you declare I think//
-  let dashDate = clicked.indexOf('-');
+  let dashDate = clicked.indexOf('—');
   let comma = clicked.indexOf(',');
 // extracting the time and date from clickedActivities
-  let lastTotal = clicked.slice(comma, dashDate);
+  let lastTotal = clicked.slice(dashDate, comma);
 
   console.log(lastTotal);
 
@@ -82,29 +81,77 @@ $('.activities').on('change',function(e){
   let $newOne = $('[type="checkbox"]');
 
 // a for loop for each ofthe activity selected so that you can disable them
-  for(let i=0; $newOne.length; i++ ){
+  for(let i=0; i < $newOne.length; i++ ){
     let $activityinteration = $newOne[i];
     console.log("It works")
 
+     if(e.target !== $activityinteration && $activityinteration.parentNode.textContent.includes(lastTotal)){
+     if(clickedActivities.prop("checked")){
+       $activityinteration.disabled=true;
+} else {
+  $activityinteration.disabled = false;
 
-     if(lastTotal && $newOne.textContent !== clickedActivities){
-     if(clickedActivities.checked ){
-       $activityinteration.disabled = true;
-     }
+}
 
-     if(clickedActivities.unchecked){
-        $activityinteration.disabled = false;
+     /*else{
+        $activityinteration.eq(i).attr("disabled",false);
 
-     }
-   }
+     }*/
+   };
 };
-console.log("still works ?");
-$("option:contains('Select Payment Method')").hide();
+});
+
+//hiding the select payment method
+$('option:contains("Select Payment Method")').hide();
+console.log("It Functions!");
+
+
+$('#payment').on('change',function(){
+
+    if($('#payment').val()=== 'paypal'){
+      $('#credit-card').hide();
+      $('div:contains("If you selected the Bitcoin option")').hide();
+      $('div:contains("If you selected the PayPal option")').show();
+    }
+
+    if($('#payment').val()=== 'bitcoin'){
+      $('#credit-card').hide();
+      $('div:contains("If you selected the PayPal option")').hide();
+      $('div:contains("If you selected the Bitcoin option")').show();
+
+
+    }
+
+    if($('#payment').val()=== 'credit card'){
+        $('#credit-card').show();
+        $('p:contains("If you selected the PayPal option")').hide();
+        $('p:contains("If you selected the Bitcoin option")').hide();
+
+    }
+
+});
 
 
 
 
 
+let $namevalid = /^[a-zA-Z]+ [a-zA-Z]+$/;
+
+
+$('form[method="post"]').submit(function(e){
+  e.preventDefault();
+  $('.error').remove();
+
+
+  if($("#name") == $namevalid){
+    console.log("I dunno");
+    $('#name').after('<span class="error">This is correct! </span>');
+
+  } else {
+    $('#name').after('<span class="error">This field is required, First and Last Name </span>');
+
+
+}
 
 
 
