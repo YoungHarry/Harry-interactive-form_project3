@@ -105,7 +105,7 @@ displayActivity.textContent = anotherDollarSign + costOfActivity;
 $('option:contains("Select Payment Method")').hide();
 console.log("It Functions!");
 
-
+//setting which options appear according to the payment you selected
 $('#payment').on('change',function(){
 
     if($('#payment').val()=== 'paypal'){
@@ -137,7 +137,7 @@ $('#payment').on('change',function(){
 
 let $namevalid = /^[a-zA-Z]+ [a-zA-Z]+$/;
 
-
+//Setting up validation and span errors in case the user tries to submit incorrectly
 $('form[method="post"]').submit(function(e){
   e.preventDefault();
   $('.error').remove();
