@@ -144,14 +144,14 @@ let $anotherNewOne = $('[type="checkbox"]');
 $('form[method="post"]').submit(function(e){
   e.preventDefault();
   $('.error').remove();
-
+// testing Name
   if($namevalid.test($("#name").val())){
 
   }else{
     $('#name').after('<span class="error">This field is required, First and Last Name </span>');
 
   };
-
+  // testing Email
   if($emailValid.test($('#mail').val())){
 
   } else{
@@ -159,14 +159,14 @@ $('form[method="post"]').submit(function(e){
 
 };
 
-
+// Testing to see if Main Conference was checked or clicked
       if($anotherNewOne.prop("checked")== true){
 
         }
         else{
                 $('.activities').after('<span class="error">This field is required, Select Main Conference before choosing the others. </span>');
             };
-
+//if credit card payment option is selected
 if($('#payment').val()=== 'credit card'){
 
         if($creditCardValid.test($('#cc-num').val())){
@@ -192,9 +192,6 @@ if($('#payment').val()=== 'credit card'){
         };
 
 };
-
-
-
 
 
 });
