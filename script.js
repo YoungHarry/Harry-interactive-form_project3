@@ -110,14 +110,14 @@ $('#payment').on('change',function(){
 
     if($('#payment').val()=== 'paypal'){
       $('#credit-card').hide();
-      $('div:contains("If you selected the Bitcoin option")').hide();
-      $('div:contains("If you selected the PayPal option")').show();
+      $('p:contains("If you selected the Bitcoin option")').hide();
+      $('p:contains("If you selected the PayPal option")').show();
     }
 
     if($('#payment').val()=== 'bitcoin'){
       $('#credit-card').hide();
-      $('div:contains("If you selected the PayPal option")').hide();
-      $('div:contains("If you selected the Bitcoin option")').show();
+      $('p:contains("If you selected the PayPal option")').hide();
+      $('p:contains("If you selected the Bitcoin option")').show();
 
 
     }
@@ -133,30 +133,65 @@ $('#payment').on('change',function(){
 
 
 
-
-
-let $namevalid = /^[a-zA-Z]+ [a-zA-Z]+$/;
-
+// regular expressions for name , email and credit card if selected
+let $cvvCode = /^[0-9]{3,4}$/;
+let $zipCode = /^\d{5}(-\d{4})?$/;
+let $creditCardValid = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35d{3})d{11})$/;
+let $emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+let $namevalid = /^[a-zA-Z]+[a-zA-Z]+$/;
+let $anotherNewOne = $('[type="checkbox"]');
 //Setting up validation and span errors in case the user tries to submit incorrectly
 $('form[method="post"]').submit(function(e){
   e.preventDefault();
   $('.error').remove();
 
+  if($namevalid.test($("#name").val())){
 
-  if($("#name") == $namevalid){
-    console.log("I dunno");
-    $('#name').after('<span class="error">This is correct! </span>');
-
-  } else {
+  }else{
     $('#name').after('<span class="error">This field is required, First and Last Name </span>');
 
+  };
 
-}
+  if($emailValid.test($('#mail').val())){
+
+  } else{
+    $('#mail').after('<span class="error">This field is required, Email Address </span>');
+
+};
 
 
+      if($anotherNewOne.prop("checked")== true){
+
+        }
+        else{
+                $('.activities').after('<span class="error">This field is required, Select Main Conference before choosing the others. </span>');
+            };
+
+if($('#payment').val()=== 'credit card'){
+
+        if($creditCardValid.test($('#cc-num').val())){
+
+        } else {
+          $('#cc-num').after('<span class="error">This field is required, Fill out Credit Card number. </span>');
+        };
+
+        if($zipCode.test($('#zip').val())){
 
 
+        } else {
+          $('#zip').after('<span class="error">This field is required, Fill out Zip Code number. </span>');
 
+
+        };
+        if($cvvCode.test($('#cvv').val())){
+
+        } else{
+          $('#cvv').after('<span class="error">This field is required, Fill out Cvv number. </span>');
+
+
+        };
+
+};
 
 
 
