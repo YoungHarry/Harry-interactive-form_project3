@@ -8,12 +8,30 @@ $("#name").focus();
 
 
 //Add an "Other" option to the Job Role section
-
 $('#other-title').hide();
 
+
+$('#title').on('change',function(){
+$('#other-title').hide();
+if($('#title').val() === 'other'){
+  $('#other-title').show();
+}else {
+$('#other-title').hide();
+};
+
+});
 //Hide the 'select theme 'option' element in the 'design' menu
 //Update the color field to read "Please Select a T-Shirt"
 $("option:contains('Select Theme')").hide();
+$("option:contains('Cornflower Blue (JS Puns shirt only)')").hide();
+$("option:contains('Dark Slate Grey (JS Puns shirt only)')").hide();
+$("option:contains('Gold (JS Puns shirt only)')").hide();
+    $("option:contains('Tomato')").hide();
+    $("option:contains('Steel Blue ')").hide();
+    $("option:contains('Dim Grey')").hide();
+
+
+
 //creating the new option value
 //$('#color').prepend('<option value="getashirt">Please Select a T-Shirt</option>').val('option:first');
 $('#color').prepend('<option value="getashirt">Please Select a T-Shirt</option>');
@@ -24,9 +42,9 @@ $('#design').on('change',function(){
     $("option:contains('Cornflower Blue (JS Puns shirt only)')").hide();
     $("option:contains('Dark Slate Grey (JS Puns shirt only)')").hide();
     $("option:contains('Gold (JS Puns shirt only)')").hide();
-    $("option:contains('Tomato (I &#9829; JS shirt only)')").show();
-    $("option:contains('Steel Blue (I &#9829; JS shirt only)')").show();
-    $("option:contains('Dim Grey (I &#9829; JS shirt only)')").show();
+    $("option:contains('Tomato')").show();
+    $("option:contains('Steel Blue')").show();
+    $("option:contains('Dim Grey')").show();
 
   }
    if($('#design').val() === "js puns"){
@@ -104,6 +122,10 @@ displayActivity.textContent = anotherDollarSign + costOfActivity;
 //hiding the select payment method
 $('option:contains("Select Payment Method")').hide();
 console.log("It Functions!");
+$('#payment')[0].selectedIndex =1;
+$('p:contains("If you selected the PayPal option")').hide();
+$('p:contains("If you selected the Bitcoin option")').hide();
+
 
 //setting which options appear according to the payment you selected
 $('#payment').on('change',function(){
@@ -136,27 +158,27 @@ $('#payment').on('change',function(){
 // regular expressions for name , email and credit card if selected
 let $cvvCode = /^[0-9]{3,4}$/;
 let $zipCode = /^\d{5}(-\d{4})?$/;
-let $creditCardValid = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35d{3})d{11})$/;
+let $creditCardValid = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11}|62[0-9]{14})$/;
 let $emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 let $namevalid = /^[a-zA-Z]+[a-zA-Z]+$/;
 let $anotherNewOne = $('[type="checkbox"]');
 //Setting up validation and span errors in case the user tries to submit incorrectly
 $('form[method="post"]').submit(function(e){
-  e.preventDefault();
+
   $('.error').remove();
 // testing Name
   if($namevalid.test($("#name").val())){
 
   }else{
     $('#name').after('<span class="error">This field is required, First and Last Name </span>');
-
+    e.preventDefault();
   };
   // testing Email
   if($emailValid.test($('#mail').val())){
 
   } else{
     $('#mail').after('<span class="error">This field is required, Email Address </span>');
-
+    e.preventDefault();
 };
 
 // Testing to see if Main Conference was checked or clicked
@@ -165,6 +187,7 @@ $('form[method="post"]').submit(function(e){
         }
         else{
                 $('.activities').after('<span class="error">This field is required, Select Main Conference before choosing the others. </span>');
+                e.preventDefault();
             };
 //if credit card payment option is selected
 if($('#payment').val()=== 'credit card'){
@@ -173,6 +196,7 @@ if($('#payment').val()=== 'credit card'){
 
         } else {
           $('#cc-num').after('<span class="error">This field is required, Fill out Credit Card number. </span>');
+          e.preventDefault();
         };
 
         if($zipCode.test($('#zip').val())){
@@ -180,6 +204,7 @@ if($('#payment').val()=== 'credit card'){
 
         } else {
           $('#zip').after('<span class="error">This field is required, Fill out Zip Code number. </span>');
+          e.preventDefault();
 
 
         };
@@ -187,6 +212,7 @@ if($('#payment').val()=== 'credit card'){
 
         } else{
           $('#cvv').after('<span class="error">This field is required, Fill out Cvv number. </span>');
+          e.preventDefault();
 
 
         };
