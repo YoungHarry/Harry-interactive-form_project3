@@ -159,20 +159,13 @@ $('form[method="post"]').submit(function(e){
 };
 
 // Testing to see if Main Conference was checked or clicked
-function checkboxValidation() {
+      if($anotherNewOne.length < 0){
 
-if ($anotherNewOne.length < 1) {
-$(".activities").after(
-  '<span class="error">At least one checkbox must be selected'
-);
-$(".error").addClass("error-text");
-return false;
-} else {
-$(".error").remove();
-return true;
-}
-}
-
+        }
+        else{
+                $('.activities').after('<span class="error">This field is required, Select Main Conference before choosing the others. </span>');
+                e.preventDefault();
+            };
 //if credit card payment option is selected
 if($('#payment').val()=== 'credit card'){
 
