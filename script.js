@@ -30,7 +30,37 @@ $("option:contains('Gold (JS Puns shirt only)')").hide().disabled;
     $("option:contains('Steel Blue ')").hide().disabled;
     $("option:contains('Dim Grey')").hide().disabled;
 
+    const toggleDropDown = () => {
+        $("#color")
+          .find("option")
+          .remove();
 
+        if ($("#design").val() == "js puns") {
+          $("#color").append(
+            '<option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>'
+          );
+          $("#color").append(
+            '<option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>'
+          );
+          $("#color").append(
+            '<option value="gold">Gold (JS Puns shirt only)</option>'
+          );
+        }
+
+        if ($("#design").val() == "heart js") {
+          $("#color").append(
+            '<option value="tomato">Tomato (I &#9829; JS shirt only)</option>'
+          );
+          $("#color").append(
+            '<option value="steelblue">Steel Blue (I &#9829; JS shirt only)</option>'
+          );
+          $("#color").append(
+            '<option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option>'
+          );
+        }
+      };
+
+      $("#design").change(toggleDropDown);
 
 //creating the new option value
 //$('#color').prepend('<option value="getashirt">Please Select a T-Shirt</option>').val('option:first');
