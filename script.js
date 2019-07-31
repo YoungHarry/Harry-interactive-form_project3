@@ -22,13 +22,13 @@ $('#other-title').hide();
 });
 //Hide the 'select theme 'option' element in the 'design' menu
 //Update the color field to read "Please Select a T-Shirt"
-$("option:contains('Select Theme')").hide();
-$("option:contains('Cornflower Blue (JS Puns shirt only)')").hide();
-$("option:contains('Dark Slate Grey (JS Puns shirt only)')").hide();
-$("option:contains('Gold (JS Puns shirt only)')").hide();
-    $("option:contains('Tomato')").hide();
-    $("option:contains('Steel Blue ')").hide();
-    $("option:contains('Dim Grey')").hide();
+$("option:contains('Select Theme')").hide().disabled;
+$("option:contains('Cornflower Blue (JS Puns shirt only)')").hide().disabled;
+$("option:contains('Dark Slate Grey (JS Puns shirt only)')").hide().disabled;
+$("option:contains('Gold (JS Puns shirt only)')").hide().disabled;
+    $("option:contains('Tomato')").hide().disabled;
+    $("option:contains('Steel Blue ')").hide().disabled;
+    $("option:contains('Dim Grey')").hide().disabled;
 
 
 
@@ -37,30 +37,7 @@ $("option:contains('Gold (JS Puns shirt only)')").hide();
 $('#color').prepend('<option value="getashirt">Please Select a T-Shirt</option>');
 $('#color')[0].selectedIndex =0;
 
-$('#design').on('change',function(){
-  if($('#design').val() === "heart js"){
-    $("option:contains('Cornflower Blue (JS Puns shirt only)')").hide();
-    $("option:contains('Dark Slate Grey (JS Puns shirt only)')").hide();
-    $("option:contains('Gold (JS Puns shirt only)')").hide();
-    $("option:contains('Tomato')").show();
-    $("option:contains('Steel Blue')").show();
-    $("option:contains('Dim Grey')").show();
 
-  }
-   if($('#design').val() === "js puns"){
-     $("option:contains('Cornflower Blue (JS Puns shirt only)')").show();
-     $("option:contains('Dark Slate Grey (JS Puns shirt only)')").show();
-     $("option:contains('Gold (JS Puns shirt only)')").show();
-
-    $("option:contains('Tomato')").hide();
-    $("option:contains('Steel Blue ')").hide();
-    $("option:contains('Dim Grey')").hide();
-
-}
-
-
-
-});
 
 let costOfActivity = 0;
 let anotherDollarSign = "$";
@@ -156,12 +133,12 @@ $('#payment').on('change',function(){
 
 
 // regular expressions for name , email and credit card if selected
-let $cvvCode = /^[0-9]{3,4}$/;
+let $cvvCode = /^[0-9]{3}$/;
 let $zipCode = /^\d{5}(-\d{4})?$/;
-let $creditCardValid = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11}|62[0-9]{14})$/;
+let $creditCardValid = /^\d{13,16}$/;
 let $emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-let $namevalid = /^[a-zA-Z]+[a-zA-Z]+$/;
-let $anotherNewOne = $('[type="checkbox"]');
+let $namevalid = /^[a-z ,.'-]+$/i;
+const $anotherNewOne = $('input[type="checkbox"]:checked');
 //Setting up validation and span errors in case the user tries to submit incorrectly
 $('form[method="post"]').submit(function(e){
 
@@ -182,13 +159,20 @@ $('form[method="post"]').submit(function(e){
 };
 
 // Testing to see if Main Conference was checked or clicked
-      if($anotherNewOne.prop("checked")== true){
+function checkboxValidation() {
 
-        }
-        else{
-                $('.activities').after('<span class="error">This field is required, Select Main Conference before choosing the others. </span>');
-                e.preventDefault();
-            };
+if ($anotherNewOne.length < 1) {
+$(".activities").after(
+  '<span class="error">At least one checkbox must be selected'
+);
+$(".error").addClass("error-text");
+return false;
+} else {
+$(".error").remove();
+return true;
+}
+}
+
 //if credit card payment option is selected
 if($('#payment').val()=== 'credit card'){
 
