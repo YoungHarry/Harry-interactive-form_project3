@@ -189,11 +189,11 @@ $('form[method="post"]').submit(function(e){
 };
 
 // Testing to see if Main Conference was checked or clicked
-      if($anotherNewOne.prop("checked")== true){
+      if($anotherNewOne.prop("checked").length < 1){
 
         }
         else{
-                $('.activities').after('<span class="error">This field is required, Select Main Conference before choosing the others. </span>');
+                $('.activities').after('<span class="error">This field is required, Select an Activity. </span>');
                 e.preventDefault();
             };
 //if credit card payment option is selected
