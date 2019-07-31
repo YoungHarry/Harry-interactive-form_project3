@@ -30,7 +30,7 @@ $("option:contains('Gold (JS Puns shirt only)')").hide().disabled;
     $("option:contains('Steel Blue ')").hide().disabled;
     $("option:contains('Dim Grey')").hide().disabled;
 
-    const toggleDropDown = () => {
+    const selectColor = () => {
         $("#color")
           .find("option")
           .remove();
@@ -60,7 +60,7 @@ $("option:contains('Gold (JS Puns shirt only)')").hide().disabled;
         }
       };
 
-      $("#design").change(toggleDropDown);
+      $("#design").change(selectColor);
 
 //creating the new option value
 //$('#color').prepend('<option value="getashirt">Please Select a T-Shirt</option>').val('option:first');
