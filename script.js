@@ -189,7 +189,7 @@ $('form[method="post"]').submit(function(e){
 };
 
 // Testing to see if Main Conference was checked or clicked
-      if($anotherNewOne.prop("checked").length < 1){
+      if($anotherNewOne.prop("checked")== true){
 
         }
         else{
