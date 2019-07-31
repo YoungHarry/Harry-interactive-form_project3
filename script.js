@@ -168,10 +168,10 @@ let $zipCode = /^\d{5}(-\d{4})?$/;
 let $creditCardValid = /^\d{13,16}$/;
 let $emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 let $namevalid = /^[a-z ,.'-]+$/i;
-const $anotherNewOne = $('[type="checkbox"]:checked');
+
 //Setting up validation and span errors in case the user tries to submit incorrectly
 $('form[method="post"]').submit(function(e){
-
+const $anotherNewOne = $('[type="checkbox"]:checked');
   $('.error').remove();
 // testing Name
   if($namevalid.test($("#name").val())){
@@ -191,9 +191,8 @@ $('form[method="post"]').submit(function(e){
 // Testing to see if Main Conference was checked or clicked
 
 
-      if($anotherNewOne >= 1){
-        $('.activities').after('<span class="error">This field is required, Select an Activity. </span>').remove();
-        }
+      if($anotherNewOne.length >= 1){
+      }
         else{
                 $('.activities').after('<span class="error">This field is required, Select an Activity. </span>');
                 e.preventDefault();
